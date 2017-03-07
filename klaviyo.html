@@ -1,0 +1,45 @@
+<!--Set this up in HTML format so I can use a script tag thus my text-editor's
+linter won't be upset about the fact that I am not using ES6 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <script>
+    // required for using klaviyo to push data
+    // comes from Klaviyo javascript api docs
+    var _learnq = _learnq || [];
+
+    // pushes the data, send is what we are looking for followed by the event
+    _learnq.push(['send', 'Placed Order']);
+    (function () {
+      var b = document.createElement('script'); b.type = 'text/javascript'; b.async = true;
+      // determine whether site uses https or http
+      b.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'a.klaviyo.com/media/js/analytics/analytics.js';
+      var a = document.getElementsByTagName('script')[0]; a.parentNode.insertBefore(b, a);
+    })();
+
+
+// pushes the data, send is what we are looking for followed by the event
+    _learnq.push(['send', 'Ordered Product']);
+    (function () {
+      var b = document.createElement('script'); b.type = 'text/javascript'; b.async = true;
+      // determine whether site uses https or http + the api which I assume allows a user to view metrics
+      b.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'a.klaviyo.com/media/js/analytics/analytics.js';
+      var a = document.getElementsByTagName('script')[0]; a.parentNode.insertBefore(b, a);
+    })();
+
+
+    </script>
+  </body>
+</html>
+<!-- A couple of things to note, I was not sure how to test to see if data was
+pushed to Klaviyo or not since it seemed like, based off of the docs, you need to
+add the script to the Shopify code which I don't have access to
+
+I was also able to come up with two curl requests which will be available in this
+repo that I think are supposed to be used in some instance however that would mean
+the script would need to be an AJAX request so that didn't really make sense to me -->
